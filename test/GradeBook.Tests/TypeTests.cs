@@ -98,14 +98,14 @@ namespace GradeBook.Tests
             var book1 = GetBook("Book 1");
             GetBookSetNameByRef(ref book1, "New Name");
 
-            Assert.Equal("New Name", book1.BookName);
+            Assert.Equal("New Name", book1.Name);
 
 
         }
 
-        private void GetBookSetNameByRef(ref Book book, string NewName)
+        private void GetBookSetNameByRef(ref InMemoryBook book, string NewName)
         {
-            book = new Book(NewName);
+            book = new InMemoryBook(NewName);
         }
 
 
@@ -115,14 +115,14 @@ namespace GradeBook.Tests
             var book1 = GetBook("Book 1");
             GetBookSetName(book1, "New Name");
 
-            Assert.NotEqual("New Name", book1.BookName);
+            Assert.NotEqual("New Name", book1.Name);
 
 
         }
 
-        private void GetBookSetName(Book book, string NewName)
+        private void GetBookSetName(InMemoryBook book, string NewName)
         {
-            book = new Book(NewName);
+            book = new InMemoryBook(NewName);
         }
 
         [Fact]
@@ -132,14 +132,14 @@ namespace GradeBook.Tests
             SetName(book1, "New Name");
 
             // C# always passes objects to methods by value
-            Assert.Equal("New Name", book1.BookName);
+            Assert.Equal("New Name", book1.Name);
 
 
         }
 
-        private void SetName(Book book, string NewName)
+        private void SetName(InMemoryBook book, string NewName)
         {
-            book.BookName = NewName;
+            book.Name = NewName;
         }
 
         [Fact]
@@ -148,8 +148,8 @@ namespace GradeBook.Tests
             var book1 = GetBook("Book 1");
             var book2 = GetBook("Book 2");
 
-            Assert.Equal("Book 1", book1.BookName);
-            Assert.Equal("Book 2", book2.BookName);
+            Assert.Equal("Book 1", book1.Name);
+            Assert.Equal("Book 2", book2.Name);
             Assert.NotSame(book1, book2);
 
 
@@ -164,9 +164,9 @@ namespace GradeBook.Tests
 
 
         }
-        private Book GetBook(string name)
+        private InMemoryBook GetBook(string name)
         {
-            return new Book(name);
+            return new InMemoryBook(name);
         }
     }
 }
